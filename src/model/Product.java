@@ -22,65 +22,76 @@ public class Product {
     int min;
     int max;
     
+    public Product (int productID, String name, double price, int inStock, int min, int max) {
+        setProductID(productID);
+        setName(name);
+        setPrice(price);
+        setInStock(inStock);
+        setMin(min);
+        setMax(max);
+    }
     
-    public void setName(String){
-        // method text
+    
+    private void setName(String name){
+        this.name = name;
     }
     
     public String getName() {
-        // method text
+        return name;
     }
     
-    public void setPrice(double) {
-        // method text
+    private void setPrice(double price) {
+        this.price = price;
     }
     
     public double getPrice() {
-        // method text
+        return price;
     }
     
-    public void setInStock(int) {
-        // method text
+    private void setInStock(int inStock) {
+        this.inStock = inStock;
     }
     
     public int getInStock() {
-        // method text
+        return inStock;
     }
     
-    public void setMin(int) {
-        // method text
+    private void setMin(int min) {
+        this.min = min;
     }
     
     public int getMin() {
-        // method text
+        return min;
     }
     
-    public void setMax(int) {
-        // method text
+    private void setMax(int max) {
+        this.max = max;
     }
     
     public int getMax() {
+        return max;
+    }
+    
+    public void addAssociatedPart(Part part) {
         // method text
     }
     
-    public void addAssociatedPart(Part) {
+    public boolean removeAssociatedPart(int partID) {
         // method text
+        return true;
     }
     
-    public boolean removeAssociatedPart(int) {
+    public Part lookupAssociatedPart(int productID) {
         // method text
+        
     }
     
-    public Part lookupAssociatedPart(int) {
-        // method text
-    }
-    
-    public void setProductID(int) {
-        // method text
+    private void setProductID(int productID) {
+        this.productID = productID;
     }
     
     public int getProductID() {
-        // method text
+        return productID;
     }
     
 }

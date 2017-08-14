@@ -19,52 +19,52 @@ public abstract class Part {
     int max;
     
     
-    public void setName(String) {
-        // method text
+    protected void setName(String name) {
+        this.name = name;
     }
     
     public String getName() {
-        // method text
+        return name;
     }
     
-    public void setPrice(double) {
-        // method text
+    protected void setPrice(double price) {
+        this.price = price;
     }
     
     public double getPrice() {
-        // method text
+        return price;
     }
     
-    public void setInStock(int) {
-        // method text
+    protected void setInStock(int inStock) {
+        this.inStock = inStock;
     }
     
     public int getInStock() {
-        // method text
+        return inStock;
     }
     
-    public void setMin(int) {
-        // method text
+    protected void setMin(int min) {
+        this.min = min;
     }
     
     public int getMin() {
-        // method text
+        return min;
     }
     
-    public void setMax(int) {
-        // method text
+    protected void setMax(int max) {
+        this.max = max;
     }
     
     public int getMax() {
-        // method text
+        return max;
     }
     
-    public void setPartID(int) {
-        // method text
+    protected void setPartID(int partID) {
+        this.partID = partID;
     }
     
     public int getPartID() {
-        // method text
+        return partID;
     }
     
     

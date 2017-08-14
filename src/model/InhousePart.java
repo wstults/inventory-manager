@@ -13,13 +13,23 @@ public class InhousePart extends Part{
     
     int machineID;
     
+    public InhousePart(int partID, String name, double price, int inStock, int min, int max, int machineID) {
+        setPartID(partID);
+        setName(name);
+        setPrice(price);
+        setInStock(inStock);
+        setMin(min);
+        setMax(max);
+        setMachineID(machineID);
+    }
     
-    public void setMachineID(int) {
-        // method text
+    
+    private void setMachineID(int machineID) {
+        this.machineID = machineID;
     }
     
     public int getMachineID() {
-        // method text
+        return machineID;
     }
     
     

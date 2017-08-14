@@ -16,36 +16,39 @@ public class Inventory {
     ArrayList<Product> products = new ArrayList<>();
     ArrayList<Part> allParts = new ArrayList<>();
     
-    public void addProduct(Product){
+    public void addProduct(Product product){
         // method text
     }
     
-    public boolean removeProduct(int) {
+    public boolean removeProduct(int productID) {
         // method text
         return true;
     }
     
-    public Product lookupProduct(int) {
-        // method text
+    public Product lookupProduct(int productID) {
+        for (Product a : products) {
+            if (productID == a.productID) 
+            return a;
     }
     
-    public void updateProduct(int) {
+    public void updateProduct(int productID) {
         // method text
     } 
     
-    public void addPart(Part) {
+    public void addPart(Part part) {
         //method text
     }
     
-    public boolean deletePart(Part) {
+    public boolean deletePart(Part part) {
+        // method text
+        return true;
+    }
+    
+    public Part lookupPart(int partID) {
         // method text
     }
     
-    public Part lookupPart(int) {
-        // method text
-    }
-    
-    public void updatePart(int) {
+    public void updatePart(int partID) {
         // method text
     }
     
