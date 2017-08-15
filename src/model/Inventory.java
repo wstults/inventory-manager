@@ -5,7 +5,8 @@
  */
 package model;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -13,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Inventory {
     
-    ArrayList<Product> products = new ArrayList<>();
-    ArrayList<Part> allParts = new ArrayList<>();
+    private ObservableList<Product> products = FXCollections.observableArrayList();
+    private ObservableList<Part> allParts = FXCollections.observableArrayList();
     
     public void addProduct(Product product){
         // method text
