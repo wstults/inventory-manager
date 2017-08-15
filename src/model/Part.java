@@ -5,65 +5,98 @@
  */
 package model;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author William
  */
 public abstract class Part {
     
-    int partID;
-    String name;
-    double price;
-    int inStock;
-    int min;
-    int max;
+    protected IntegerProperty partID;
+    protected StringProperty name;
+    protected DoubleProperty price;
+    protected IntegerProperty inStock;
+    protected IntegerProperty min;
+    protected IntegerProperty max;
+    
+    public Part () {
+        
+        
+    }
     
     
-    protected void setName(String name) {
-        this.name = name;
+    private void setName(String name) {
+        this.name.set(name);
     }
     
     public String getName() {
+        return name.get();
+    }
+    
+    public StringProperty nameProperty() {
         return name;
     }
     
-    protected void setPrice(double price) {
-        this.price = price;
+    private void setPrice(double price) {
+        this.price.set(price);
     }
     
     public double getPrice() {
+        return price.get();
+    }
+    
+    public DoubleProperty priceProperty() {
         return price;
     }
     
-    protected void setInStock(int inStock) {
-        this.inStock = inStock;
+    private void setInStock(int inStock) {
+        this.inStock.set(inStock);
     }
     
     public int getInStock() {
+        return inStock.get();
+    }
+    
+    public IntegerProperty inStockProperty() {
         return inStock;
     }
     
-    protected void setMin(int min) {
-        this.min = min;
+    private void setMin(int min) {
+        this.min.set(min);
     }
     
     public int getMin() {
+        return min.get();
+    }
+    
+    public IntegerProperty minProperty() {
         return min;
     }
     
-    protected void setMax(int max) {
-        this.max = max;
+    private void setMax(int max) {
+        this.max.set(max);
     }
     
     public int getMax() {
+        return max.get();
+    }
+    
+    public IntegerProperty maxProperty() {
         return max;
     }
     
-    protected void setPartID(int partID) {
-        this.partID = partID;
+    private void setPartID(int partID) {
+        this.partID.set(partID);
     }
     
     public int getPartID() {
+        return partID.get();
+    }
+    
+    public IntegerProperty partIDProperty() {
         return partID;
     }
     

@@ -14,8 +14,8 @@ import javafx.collections.ObservableList;
  */
 public class Inventory {
     
-    private ObservableList<Product> products = FXCollections.observableArrayList();
-    private ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private final ObservableList<Product> products = FXCollections.observableArrayList();
+    private final ObservableList<Part> allParts = FXCollections.observableArrayList();
     
     public void addProduct(Product product){
         // method text
