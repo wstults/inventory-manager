@@ -21,7 +21,7 @@ public class Product {
     
     ArrayList<Part> associatedParts = new ArrayList<>();
     
-    private final IntegerProperty productID;
+    protected final IntegerProperty productID;
     private final StringProperty name;
     private final DoubleProperty price;
     private final IntegerProperty inStock;

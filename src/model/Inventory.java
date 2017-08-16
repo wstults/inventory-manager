@@ -5,6 +5,7 @@
  */
 package model;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -26,10 +27,11 @@ public class Inventory {
         return true;
     }
     
-    public Product lookupProduct(int productID) {
+    public Product lookupProduct(IntegerProperty productID) {
         for (Product a : products) {
             if (productID == a.productID) 
             return a;
+    }
     }
     
     public void updateProduct(int productID) {
@@ -45,8 +47,12 @@ public class Inventory {
         return true;
     }
     
-    public Part lookupPart(int partID) {
-        // method text
+    public Part lookupPart(IntegerProperty partID) {
+        for (Part a : allParts) {
+            if (partID == a.partID) {
+                return a;
+        }
+        }
     }
     
     public void updatePart(int partID) {
