@@ -5,13 +5,14 @@
  */
 package model;
 
-import java.util.ArrayList;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -19,7 +20,7 @@ import javafx.beans.property.StringProperty;
  */
 public class Product {
     
-    ArrayList<Part> associatedParts = new ArrayList<>();
+    private final ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     
     protected final IntegerProperty productID;
     private final StringProperty name;
@@ -99,16 +100,18 @@ public class Product {
     }
     
     public void addAssociatedPart(Part part) {
-        // method text
+        associatedParts.add(part);
     }
     
     public boolean removeAssociatedPart(int partID) {
-        // method text
+        associatedParts.stream().filter((p) -> (p.getPartID() == partID)).forEach((p) -> {
+            associatedParts.remove(p);
+        });
         return true;
     }
     
     public Part lookupAssociatedPart(int productID) {
-        // method text
+        // functionality will be addressed elsewhere - return to update comment
         
     }
     

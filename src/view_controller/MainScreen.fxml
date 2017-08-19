@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="view_controller.MainScreenController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.MainScreenController">
    <children>
       <Label layoutX="48.0" layoutY="43.0" text="Inventory Management System" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="45.0">
          <font>
@@ -19,12 +18,12 @@
       </Label>
       <AnchorPane layoutX="92.0" layoutY="141.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="620.0" AnchorPane.topAnchor="100.0">
          <children>
-            <TableView layoutX="79.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="60.0">
+            <TableView fx:id="partsTable" layoutX="79.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="60.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Part ID" />
-                <TableColumn prefWidth="75.0" text="Part Name" />
-                  <TableColumn prefWidth="75.0" text="Inventory Level" />
-                  <TableColumn prefWidth="75.0" text="Price/Cost Per Unit" />
+                <TableColumn fx:id="partIDcolumn" prefWidth="75.0" text="Part ID" />
+                <TableColumn fx:id="partNameColumn" prefWidth="75.0" text="Part Name" />
+                  <TableColumn fx:id="partInventoryLevelColumn" prefWidth="75.0" text="Inventory Level" />
+                  <TableColumn fx:id="partPriceColumn" prefWidth="75.0" text="Price/Cost Per Unit" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -37,23 +36,23 @@
             </Label>
             <ButtonBar layoutX="125.0" layoutY="246.0" prefHeight="40.0" prefWidth="245.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="45.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Add" />
-                  <Button mnemonicParsing="false" text="Modify" />
-                  <Button mnemonicParsing="false" text="Delete" />
+                <Button fx:id="addPartButton" mnemonicParsing="false" onAction="#handleAddPart" text="Add" />
+                  <Button fx:id="modifyPartButton" mnemonicParsing="false" onAction="#handleModifyPart" text="Modify" />
+                  <Button fx:id="deletePartButton" mnemonicParsing="false" onAction="#handleDeletePart" text="Delete" />
               </buttons>
             </ButtonBar>
-            <Button layoutX="201.0" layoutY="13.0" mnemonicParsing="false" text="Search" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0" />
-            <TextField layoutX="356.0" layoutY="15.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0" />
+            <Button fx:id="searchPartButton" layoutX="201.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSearchPart" text="Search" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0" />
+            <TextField fx:id="searchPartField" layoutX="356.0" layoutY="15.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="629.0" layoutY="141.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
          <children>
-            <TableView layoutX="115.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="60.0">
+            <TableView fx:id="productsTable" layoutX="115.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="60.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Product ID" />
-                <TableColumn prefWidth="75.0" text="Product Name" />
-                  <TableColumn prefWidth="75.0" text="Inventory Level" />
-                  <TableColumn prefWidth="75.0" text="Price Per Unit" />
+                <TableColumn fx:id="productIDColumn" prefWidth="75.0" text="Product ID" />
+                <TableColumn fx:id="productNameColumn" prefWidth="75.0" text="Product Name" />
+                  <TableColumn fx:id="productInventoryLevelColumn" prefWidth="75.0" text="Inventory Level" />
+                  <TableColumn fx:id="productPriceColumn" prefWidth="75.0" text="Price Per Unit" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -66,15 +65,15 @@
             </Label>
             <ButtonBar layoutX="120.0" layoutY="246.0" prefHeight="40.0" prefWidth="265.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="45.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Add" />
-                  <Button mnemonicParsing="false" text="Modify" />
-                  <Button mnemonicParsing="false" text="Delete" />
+                <Button fx:id="addProductButton" mnemonicParsing="false" onAction="#handleAddProduct" text="Add" />
+                  <Button fx:id="modifyProductButton" mnemonicParsing="false" onAction="#handleModifyProduct" text="Modify" />
+                  <Button fx:id="deleteProductButton" mnemonicParsing="false" onAction="#handleDeleteProduct" text="Delete" />
               </buttons>
             </ButtonBar>
-            <Button layoutX="227.0" layoutY="13.0" mnemonicParsing="false" text="Search" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0" />
-            <TextField layoutX="356.0" layoutY="15.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0" />
+            <Button fx:id="searchProductButton" layoutX="227.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSearchProduct" text="Search" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0" />
+            <TextField fx:id="searchProductField" layoutX="356.0" layoutY="15.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0" />
          </children>
       </AnchorPane>
-      <Button layoutX="874.0" layoutY="461.0" mnemonicParsing="false" text="Exit" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="75.0" />
+      <Button fx:id="exitButton" layoutX="874.0" layoutY="461.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="75.0" />
    </children>
 </AnchorPane>

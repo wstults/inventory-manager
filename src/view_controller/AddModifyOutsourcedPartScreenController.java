@@ -5,34 +5,55 @@
  */
 package view_controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.awt.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author William
- */
-public class AddModifyOutsourcedPartScreenController implements Initializable {
+public class AddModifyOutsourcedPartScreenController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
     @FXML
-    private void handleSave() {
-        // method text
-    }
-    
+    private RadioButton inHouseRadio;
+
     @FXML
-    private void handleCancel() {
-        // method text
+    private RadioButton outsourcedRadio;
+
+    @FXML
+    private TextField partIDField;
+
+    @FXML
+    private TextField partNameField;
+
+    @FXML
+    private TextField partInvField;
+
+    @FXML
+    private TextField partPriceField;
+
+    @FXML
+    private TextField partCompanyNameField;
+
+    @FXML
+    private TextField partMinField;
+
+    @FXML
+    private TextField partMaxField;
+
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Button cancelButton;
+
+    @FXML
+    void handleCancel(ActionEvent event) {
+
     }
-    
+
+    @FXML
+    void handleSave(ActionEvent event) {
+
+    }
+
 }

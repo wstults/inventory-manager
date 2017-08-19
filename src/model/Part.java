@@ -15,12 +15,12 @@ import javafx.beans.property.StringProperty;
  */
 public abstract class Part {
     
-    protected IntegerProperty partID;
-    protected StringProperty name;
-    protected DoubleProperty price;
-    protected IntegerProperty inStock;
-    protected IntegerProperty min;
-    protected IntegerProperty max;
+    static IntegerProperty partID;
+    private static StringProperty name;
+    private static DoubleProperty price;
+    private static IntegerProperty inStock;
+    private static IntegerProperty min;
+    private static IntegerProperty max;
     
     public Part () {
         
@@ -28,8 +28,8 @@ public abstract class Part {
     }
     
     
-    private void setName(String name) {
-        this.name.set(name);
+    protected static void setName(String name) {
+        Part.name.set(name);
     }
     
     public String getName() {
@@ -40,8 +40,8 @@ public abstract class Part {
         return name;
     }
     
-    private void setPrice(double price) {
-        this.price.set(price);
+    protected static void setPrice(double price) {
+        Part.price.set(price);
     }
     
     public double getPrice() {
@@ -52,8 +52,8 @@ public abstract class Part {
         return price;
     }
     
-    private void setInStock(int inStock) {
-        this.inStock.set(inStock);
+    protected static void setInStock(int inStock) {
+        Part.inStock.set(inStock);
     }
     
     public int getInStock() {
@@ -64,8 +64,8 @@ public abstract class Part {
         return inStock;
     }
     
-    private void setMin(int min) {
-        this.min.set(min);
+    protected static void setMin(int min) {
+        Part.min.set(min);
     }
     
     public int getMin() {
@@ -76,8 +76,8 @@ public abstract class Part {
         return min;
     }
     
-    private void setMax(int max) {
-        this.max.set(max);
+    protected static void setMax(int max) {
+        Part.max.set(max);
     }
     
     public int getMax() {
@@ -88,8 +88,8 @@ public abstract class Part {
         return max;
     }
     
-    private void setPartID(int partID) {
-        this.partID.set(partID);
+    protected static void setPartID(int partID) {
+        Part.partID.set(partID);
     }
     
     public int getPartID() {

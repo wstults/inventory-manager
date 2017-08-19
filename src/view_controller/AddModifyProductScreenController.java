@@ -5,77 +5,104 @@
  */
 package view_controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
+import java.awt.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import model.Part;
+import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author William
- */
-public class AddModifyProductScreenController implements Initializable {
-    
-    @FXML
-    private TableView<Part> allPartsTable;
-    @FXML
-    private TableView<Part> associatedPartsTable;
-    @FXML
-    private TableColumn<Part, IntegerProperty> partIDColumn;
-    @FXML
-    private TableColumn<Part, StringProperty> partNameColumn;
-    @FXML
-    private TableColumn<Part, IntegerProperty> partInventoryLevelColumn;
-    @FXML
-    private TableColumn<Part, DoubleProperty> partPriceColumn;
-    @FXML
-    private TableColumn<Part, IntegerProperty> associatedPartIDColumn;
-    @FXML
-    private TableColumn<Part, StringProperty> associatedPartNameColumn;
-    @FXML
-    private TableColumn<Part, IntegerProperty> associatedPartInventoryLevelColumn;
-    @FXML
-    private TableColumn<Part, DoubleProperty> associatedPartPriceColumn;
-    
+public class AddModifyProductScreenController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
     @FXML
-    private void handleSearch() {
-        // method text
-    }
-    
+    private TextField productIDField;
+
     @FXML
-    private void handleAdd() {
-        // method text
-    }
-    
+    private TextField productNameField;
+
     @FXML
-    private void handleDelete() {
-        // method text
-    }
-    
+    private TextField productInvField;
+
     @FXML
-    private void handleSave() {
-        // method text
-    }
-    
+    private TextField productPriceField;
+
     @FXML
-    private void handleCancel() {
-        // method text
+    private TextField productMaxField;
+
+    @FXML
+    private TextField productMinField;
+
+    @FXML
+    private Button searchButton;
+
+    @FXML
+    private TextField partSearchField;
+
+    @FXML
+    private TableView<?> allPartsTable;
+
+    @FXML
+    private TableColumn<?, ?> partIDColumn;
+
+    @FXML
+    private TableColumn<?, ?> partNameColumn;
+
+    @FXML
+    private TableColumn<?, ?> partInventoryLevelColumn;
+
+    @FXML
+    private TableColumn<?, ?> partPriceColumn;
+
+    @FXML
+    private TableView<?> associatedPartsTable;
+
+    @FXML
+    private TableColumn<?, ?> associatedPartIDColumn;
+
+    @FXML
+    private TableColumn<?, ?> associatedPartNameColumn;
+
+    @FXML
+    private TableColumn<?, ?> associatedPartInventoryLevelColumn;
+
+    @FXML
+    private TableColumn<?, ?> associatedPartPriceColumn;
+
+    @FXML
+    private Button addButton;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Button cancelButton;
+
+    @FXML
+    void handleAdd(ActionEvent event) {
+
     }
-    
+
+    @FXML
+    void handleCancel(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleDelete(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleSave(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleSearch(ActionEvent event) {
+
+    }
+
 }

@@ -6,9 +6,7 @@
 package model;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
@@ -18,13 +16,15 @@ public class InhousePart extends Part{
     
     private final IntegerProperty machineID;
     
+    
     public InhousePart(int partID, String name, double price, int inStock, int min, int max, int machineID) {
-        this.partID = new SimpleIntegerProperty(partID);
-        this.name = new SimpleStringProperty(name);
-        this.price = new SimpleDoubleProperty(price);
-        this.inStock = new SimpleIntegerProperty(inStock);
-        this.min = new SimpleIntegerProperty(min);
-        this.max = new SimpleIntegerProperty(max);
+        
+        Part.setPartID(partID);
+        Part.setName(name);
+        Part.setPrice(price);
+        Part.setInStock(inStock);
+        Part.setMin(min);
+        Part.setMax(max);
         this.machineID = new SimpleIntegerProperty(machineID);
     }
     

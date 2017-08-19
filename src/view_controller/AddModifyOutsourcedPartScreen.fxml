@@ -8,16 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="view_controller.AddModifyOutsourcedPartScreenController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.AddModifyOutsourcedPartScreenController">
    <children>
-      <Label layoutX="29.0" layoutY="29.0" text="Label" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <Label layoutX="29.0" layoutY="29.0" text="Add Part" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <RadioButton layoutX="130.0" layoutY="30.0" mnemonicParsing="false" text="In-House" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="30.0" />
-      <RadioButton layoutX="248.0" layoutY="30.0" mnemonicParsing="false" text="Outsourced" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="30.0" />
+      <RadioButton fx:id="inHouseRadio" layoutX="130.0" layoutY="30.0" mnemonicParsing="false" text="In-House" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="30.0" />
+      <RadioButton fx:id="outsourcedRadio" layoutX="248.0" layoutY="30.0" mnemonicParsing="false" selected="true" text="Outsourced" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="30.0" />
       <Label layoutX="58.0" layoutY="83.0" text="ID" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="83.0" />
       <Label layoutX="58.0" layoutY="122.0" text="Name" AnchorPane.topAnchor="122.0" />
       <Label layoutX="58.0" layoutY="162.0" text="Inv" AnchorPane.topAnchor="161.0" />
@@ -25,17 +24,17 @@
       <Label layoutX="58.0" layoutY="241.0" text="Max" AnchorPane.topAnchor="239.0" />
       <Label layoutX="58.0" layoutY="285.0" text="Company Name" AnchorPane.topAnchor="278.0" />
       <Label layoutX="220.0" layoutY="241.0" text="Min" AnchorPane.topAnchor="239.0" />
-      <TextField layoutX="182.0" layoutY="79.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.leftAnchor="182.0" />
-      <TextField layoutX="182.0" layoutY="118.0" />
-      <TextField layoutX="182.0" layoutY="157.0" />
-      <TextField layoutX="182.0" layoutY="196.0" />
-      <TextField layoutX="182.0" layoutY="274.0" />
-      <TextField layoutX="278.0" layoutY="235.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField layoutX="130.0" layoutY="235.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="partIDField" layoutX="182.0" layoutY="79.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.leftAnchor="182.0" />
+      <TextField fx:id="partNameField" layoutX="182.0" layoutY="118.0" />
+      <TextField fx:id="partInvField" layoutX="182.0" layoutY="157.0" />
+      <TextField fx:id="partPriceField" layoutX="182.0" layoutY="196.0" />
+      <TextField fx:id="partCompanyNameField" layoutX="182.0" layoutY="274.0" />
+      <TextField fx:id="partMinField" layoutX="278.0" layoutY="235.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="partMaxField" layoutX="130.0" layoutY="235.0" prefHeight="25.0" prefWidth="70.0" />
       <ButtonBar layoutX="175.0" layoutY="326.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="326.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Save" />
-            <Button mnemonicParsing="false" text="Cancel" />
+          <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
         </buttons>
       </ButtonBar>
    </children>

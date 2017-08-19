@@ -19,44 +19,40 @@ public class Inventory {
     private final ObservableList<Part> allParts = FXCollections.observableArrayList();
     
     public void addProduct(Product product){
-        // method text
+        products.add(product);
     }
     
-    public boolean removeProduct(int productID) {
-        // method text
+    public boolean removeProduct(IntegerProperty productID) {
+        products.stream().filter((a) -> (productID == a.productID)).forEach((a) -> {
+            products.remove(a);
+        });
         return true;
     }
     
     public Product lookupProduct(IntegerProperty productID) {
-        for (Product a : products) {
-            if (productID == a.productID) 
-            return a;
-    }
+        // funtionality will be addressed elsewhere - be sure to update comment
+        
     }
     
     public void updateProduct(int productID) {
-        // method text
+        // funtionality will be addressed elsewhere - be sure to update comment
     } 
     
     public void addPart(Part part) {
-        //method text
+        allParts.add(part);
     }
     
     public boolean deletePart(Part part) {
-        // method text
-        return true;
+        return allParts.remove(part);
+        
     }
     
     public Part lookupPart(IntegerProperty partID) {
-        for (Part a : allParts) {
-            if (partID == a.partID) {
-                return a;
-        }
-        }
+        // funtionality will be addressed elsewhere - be sure to update comment
     }
     
     public void updatePart(int partID) {
-        // method text
+        // funtionality will be addressed elsewhere - be sure to update comment
     }
     
 }
