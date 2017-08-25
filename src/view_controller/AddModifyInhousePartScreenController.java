@@ -66,7 +66,14 @@ public class AddModifyInhousePartScreenController implements Initializable{
     } */
 
     @FXML
-    void handleCancel(ActionEvent event) {
+    void handleCancel(ActionEvent event) throws IOException {
+        Counter.decrement();
+        Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        Scene mainScreenScene = new Scene(mainScreenParent);
+        Stage mainScreenStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainScreenStage.hide();
+        mainScreenStage.setScene(mainScreenScene);
+        mainScreenStage.show();
 
     }
 
@@ -76,7 +83,14 @@ public class AddModifyInhousePartScreenController implements Initializable{
     }
 
     @FXML
-    void handleOutsourced(ActionEvent event) {
+    void handleOutsourced(ActionEvent event) throws IOException {
+        Counter.decrement();
+        Parent handleOutsourcedParent = FXMLLoader.load(getClass().getResource("AddModifyOutsourcedPartScreen.fxml"));
+        Scene handleOutsourcedScene = new Scene(handleOutsourcedParent);
+        Stage handleOutsourcedStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        handleOutsourcedStage.hide();
+        handleOutsourcedStage.setScene(handleOutsourcedScene);
+        handleOutsourcedStage.show();
 
     }
 

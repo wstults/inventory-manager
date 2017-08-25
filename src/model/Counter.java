@@ -19,6 +19,10 @@ public class Counter {
         return Integer.toString(value);
     }
     
+    public static void decrement() {
+        value--;
+    }
+    
     
     
 }

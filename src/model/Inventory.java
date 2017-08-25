@@ -33,7 +33,7 @@ public class Inventory {
         return allParts;
     }
     
-    public void addProduct(Product product){
+    public static void addProduct(Product product){
         products.add(product);
     }
     

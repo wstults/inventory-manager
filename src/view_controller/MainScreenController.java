@@ -106,6 +106,8 @@ public class MainScreenController {
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         productInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("InStock"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        partsTable.setItems(Inventory.getAllParts());
+        productsTable.setItems(Inventory.getProducts());
         
     } 
 
