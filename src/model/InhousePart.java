@@ -14,31 +14,31 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class InhousePart extends Part{
     
-    private final IntegerProperty machineID;
+    private final SimpleIntegerProperty MachineID=new SimpleIntegerProperty(0);
     
     
     public InhousePart(int partID, String name, double price, int inStock, int min, int max, int machineID) {
         
-        Part.setPartID(partID);
-        Part.setName(name);
-        Part.setPrice(price);
-        Part.setInStock(inStock);
-        Part.setMin(min);
-        Part.setMax(max);
-        this.machineID = new SimpleIntegerProperty(machineID);
+        setPartID(partID);
+        setName(name);
+        setPrice(price);
+        setInStock(inStock);
+        setMin(min);
+        setMax(max);
+        setMachineID(machineID);
     }
     
     
-    private void setMachineID(int machineID) {
-        this.machineID.set(machineID);
+    public void setMachineID(int machineID) {
+        MachineID.set(machineID);
     }
     
     public int getMachineID() {
-        return machineID.get();
+        return MachineID.get();
     }
     
     public IntegerProperty machineIDProperty(){
-        return machineID;
+        return MachineID;
     }
     
        

@@ -14,29 +14,29 @@ import javafx.beans.property.StringProperty;
  */
 public class OutsourcedPart extends Part {
     
-    private final StringProperty companyName;
+    private final SimpleStringProperty CompanyName=new SimpleStringProperty("");
     
         public OutsourcedPart(int partID, String name, double price, int inStock, int min, int max, String companyName) {
-        Part.setPartID(partID);
-        Part.setName(name);
-        Part.setPrice(price);
-        Part.setInStock(inStock);
-        Part.setMin(min);
-        Part.setMax(max);
-        this.companyName = new SimpleStringProperty(companyName);
+        setPartID(partID);
+        setName(name);
+        setPrice(price);
+        setInStock(inStock);
+        setMin(min);
+        setMax(max);
+        setCompanyName(companyName);
     }
     
     
-    public void setCompanyName(String companyName) {
-        this.companyName.set(companyName);
+    private void setCompanyName(String companyName) {
+        CompanyName.set(companyName);
     }
     
     public String getCompanyName() {
-        return companyName.get();
+        return CompanyName.get();
     }
     
     public StringProperty companyNameProperty() {
-        return companyName;
+        return CompanyName;
     }
     
 }

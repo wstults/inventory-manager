@@ -23,7 +23,7 @@
       <Label layoutX="58.0" layoutY="221.0" text="Price/Cost" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="200.0" />
       <Label layoutX="58.0" layoutY="264.0" text="Max" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="239.0" />
       <Label layoutX="58.0" layoutY="308.0" text="Machine ID" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="278.0" />
-      <TextField fx:id="partIDField" layoutX="156.0" layoutY="79.0" AnchorPane.leftAnchor="182.0" />
+      <TextField fx:id="partIDField" editable="false" layoutX="156.0" layoutY="79.0" AnchorPane.leftAnchor="182.0" />
       <TextField fx:id="partNameField" layoutX="182.0" layoutY="118.0" />
       <TextField fx:id="partInvField" layoutX="182.0" layoutY="157.0" />
       <TextField fx:id="partPriceField" layoutX="182.0" layoutY="196.0" />

@@ -5,17 +5,30 @@
  */
 package view_controller;
 
-import java.awt.event.ActionEvent;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import model.Inventory;
+import model.Part;
+import model.Product;
 
 public class MainScreenController {
 
     @FXML
-    private TableView<?> partsTable;
+    private TableView<Part> partsTable;
 
     @FXML
     private TableColumn<?, ?> partIDcolumn;
@@ -45,7 +58,7 @@ public class MainScreenController {
     private TextField searchPartField;
 
     @FXML
-    private TableView<?> productsTable;
+    private TableView<Product> productsTable;
 
     @FXML
     private TableColumn<?, ?> productIDColumn;
@@ -76,14 +89,45 @@ public class MainScreenController {
 
     @FXML
     private Button exitButton;
+    
+    private MainApp mainApp;
+    
+    public MainScreenController() {
+        
+    }
+    
+    @FXML
+    public void initialize() {
+        partIDcolumn.setCellValueFactory(new PropertyValueFactory<>("PartID"));
+        partNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        partInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("InStock"));
+        partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        productIDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductID"));
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        productInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("InStock"));
+        productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        
+    } 
 
     @FXML
-    void handleAddPart(ActionEvent event) {
+    void handleAddPart(ActionEvent event) throws IOException {
+        Parent addPartParent = FXMLLoader.load(getClass().getResource("AddModifyInhousePartScreen.fxml"));
+        Scene addPartScene = new Scene(addPartParent);
+        Stage addPartStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        addPartStage.hide();
+        addPartStage.setScene(addPartScene);
+        addPartStage.show();
 
     }
 
     @FXML
-    void handleAddProduct(ActionEvent event) {
+    void handleAddProduct(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root;
+        if(event.getSource()==addProductButton) {
+            stage=(Stage) addProductButton.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("AddModifyProductScreen.fxml"));
+        }
 
     }
 
@@ -103,12 +147,24 @@ public class MainScreenController {
     }
 
     @FXML
-    void handleModifyPart(ActionEvent event) {
+    void handleModifyPart(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root;
+        if(event.getSource()==modifyPartButton) {
+            stage=(Stage) modifyPartButton.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("ModifyInhousePartScreen.fxml"));
+        }
 
     }
 
     @FXML
-    void handleModifyProduct(ActionEvent event) {
+    void handleModifyProduct(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root;
+        if(event.getSource()==modifyProductButton) {
+            stage=(Stage) modifyProductButton.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("ModifyProductScreen.fxml"));
+        }
 
     }
 
@@ -120,6 +176,12 @@ public class MainScreenController {
     @FXML
     void handleSearchProduct(ActionEvent event) {
 
+    }
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        partsTable.setItems(Inventory.getAllParts());
+        productsTable.setItems(Inventory.getProducts());
     }
 
 }

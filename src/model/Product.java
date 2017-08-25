@@ -5,12 +5,9 @@
  */
 package model;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,82 +19,86 @@ public class Product {
     
     private final ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     
-    protected final IntegerProperty productID;
-    private final StringProperty name;
-    private final DoubleProperty price;
-    private final IntegerProperty inStock;
-    private final IntegerProperty min;
-    private final IntegerProperty max;
+    final SimpleIntegerProperty ProductID=new SimpleIntegerProperty(0);
+    private final SimpleStringProperty Name=new SimpleStringProperty("");
+    private final SimpleDoubleProperty Price=new SimpleDoubleProperty(0.00);
+    private final SimpleIntegerProperty InStock=new SimpleIntegerProperty(0);
+    private final SimpleIntegerProperty Min=new SimpleIntegerProperty(0);
+    private final SimpleIntegerProperty Max=new SimpleIntegerProperty(0);
     
     public Product (int productID, String name, double price, int inStock, int min, int max) {
-        this.productID = new SimpleIntegerProperty(productID);
-        this.name = new SimpleStringProperty(name);
-        this.price = new SimpleDoubleProperty(price);
-        this.inStock = new SimpleIntegerProperty(inStock);
-        this.min = new SimpleIntegerProperty(min);
-        this.max = new SimpleIntegerProperty(max);
+        setProductID(productID);
+        setName(name);
+        setPrice(price);
+        setInStock(inStock);
+        setMin(min);
+        setMax(max);
+    }
+    
+    public ObservableList<Part> getAssociatedParts() {
+        return associatedParts;
     }
     
     
-    private void setName(String name){
-        this.name.set(name);
+    public void setName(String name){
+        Name.set(name);
     }
     
     public String getName() {
-        return name.get();
+        return Name.get();
     }
     
-    public StringProperty nameProperty() {
+    /*public StringProperty nameProperty() {
         return name;
-    }
+    }*/
     
-    private void setPrice(double price) {
-        this.price.set(price);
+    public void setPrice(double price) {
+        Price.set(price);
     }
     
     public double getPrice() {
-        return price.get();
+        return Price.get();
     }
     
-    public DoubleProperty priceProperty() {
+    /*public DoubleProperty priceProperty() {
         return price;
-    }
+    }*/
     
-    private void setInStock(int inStock) {
-        this.inStock.set(inStock);
+    public void setInStock(int inStock) {
+        InStock.set(inStock);
     }
     
     public int getInStock() {
-        return inStock.get();
+        return InStock.get();
     }
     
-    public IntegerProperty inStockProperty() {
+    /*public IntegerProperty inStockProperty() {
         return inStock;
-    }
+    }*/
     
-    private void setMin(int min) {
-        this.min.set(min);
+    public void setMin(int min) {
+        Min.set(min);
     }
     
     public int getMin() {
-        return min.get();
+        return Min.get();
     }
     
-    public IntegerProperty minProperty() {
+    /*public IntegerProperty minProperty() {
         return min;
-    }
+    }*/
     
-    private void setMax(int max) {
-        this.max.set(max);
+    public void setMax(int max) {
+        Max.set(max);
     }
     
     public int getMax() {
-        return max.get();
+        return Max.get();
     }
     
-    public IntegerProperty maxProperty() {
+    /*public IntegerProperty maxProperty() {
         return max;
-    }
+    }*/
     
     public void addAssociatedPart(Part part) {
         associatedParts.add(part);
@@ -109,22 +110,22 @@ public class Product {
         });
         return true;
     }
-    
+    /*
     public Part lookupAssociatedPart(int productID) {
         // functionality will be addressed elsewhere - return to update comment
         
-    }
+    } */
     
-    private void setProductID(int productID) {
-        this.productID.set(productID);
+    public void setProductID(int productID) {
+        ProductID.set(productID);
     }
     
     public int getProductID() {
-        return productID.get();
+        return ProductID.get();
     }
     
-    public IntegerProperty productIDProperty() {
+    /*public IntegerProperty productIDProperty() {
         return productID;
-    }
+    }*/
     
 }
