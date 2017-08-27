@@ -17,9 +17,9 @@ import javafx.fxml.FXML;
 public class Inventory {
     
     @FXML
-    private static final ObservableList<Product> products = FXCollections.observableArrayList();
+    public static final ObservableList<Product> products = FXCollections.observableArrayList();
     @FXML
-    private static final ObservableList<Part> allParts = FXCollections.observableArrayList();
+    public static final ObservableList<Part> allParts = FXCollections.observableArrayList();
     
     
     

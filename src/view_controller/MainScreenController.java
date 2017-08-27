@@ -9,12 +9,15 @@ package view_controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -90,7 +93,14 @@ public class MainScreenController {
     @FXML
     private Button exitButton;
     
+    @FXML
+    public ObservableList<Part> partsData=FXCollections.observableArrayList();
+    @FXML
+    public ObservableList<Product> productsData=FXCollections.observableArrayList();
+    
     private MainApp mainApp;
+    
+    
     
     public MainScreenController() {
         
@@ -172,11 +182,116 @@ public class MainScreenController {
 
     @FXML
     void handleSearchPart(ActionEvent event) {
+        String searchPart = searchPartField.getText();
+        boolean found = false;
+        if ("".equals(searchPart)) {
+            partsTable.setItems(Inventory.getAllParts());
+            found = true;
+        }
+        try {
+            int partNumber = Integer.parseInt(searchPart);
+            for (Part a : Inventory.allParts) {
+                if (a.getPartID() == partNumber) {
+                    found = true;
+                    partsData.add(a);
+                    partIDcolumn.setCellValueFactory(new PropertyValueFactory<>("PartID"));
+                    partNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                    partInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("InStock"));
+                    partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+                    partsTable.setItems(partsData);
+                    
+                }
+            }
+            if (found==false){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Part not found");
+
+            alert.showAndWait();
+            }
+            
+        }
+        catch(NumberFormatException e){
+        for (Part a: Inventory.allParts) {
+            if (a.getName().equals(searchPart)){
+                found=true;
+                partsData.add(a);
+                partIDcolumn.setCellValueFactory(new PropertyValueFactory<>("PartID"));
+                partNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                partInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("InStock"));
+                partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+                partsTable.setItems(partsData);
+            }
+        }
+        if (found==false){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Part not found");
+
+            alert.showAndWait();
+        }
+        
+    }
 
     }
 
     @FXML
     void handleSearchProduct(ActionEvent event) {
+        String searchProduct = searchProductField.getText();
+        boolean found = false;
+        if ("".equals(searchProduct)) {
+            productsTable.setItems(Inventory.getProducts());
+            found = true;
+        }
+        try {
+            int productNumber = Integer.parseInt(searchProduct);
+            for (Product a : Inventory.products) {
+                if (a.getProductID() == productNumber) {
+                    found = true;
+                    productsData.add(a);
+                    productIDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductID"));
+                    productNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                    productInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("InStock"));
+                    productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+                    productsTable.setItems(productsData);
+                    
+                }
+            }
+            if (found==false){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Product not found");
+
+            alert.showAndWait();
+            }
+            
+        }
+        catch(NumberFormatException e){
+        for (Product a: Inventory.products) {
+            if (a.getName().equals(searchProduct)){
+                found=true;
+                productsData.add(a);
+                productIDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductID"));
+                productNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                productInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("InStock"));
+                productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+                productsTable.setItems(productsData);
+            }
+        }
+        if (found==false){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Product not found");
+
+            alert.showAndWait();
+        }
+        
+    }
+
 
     }
 
