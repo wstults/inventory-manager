@@ -5,12 +5,19 @@
  */
 package view_controller;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.Counter;
 
 public class AddModifyProductScreenController {
 
@@ -86,8 +93,14 @@ public class AddModifyProductScreenController {
     }
 
     @FXML
-    void handleCancel(ActionEvent event) {
-
+    void handleCancel(ActionEvent event) throws IOException {
+        Counter.decrement();
+        Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        Scene mainScreenScene = new Scene(mainScreenParent);
+        Stage mainScreenStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainScreenStage.hide();
+        mainScreenStage.setScene(mainScreenScene);
+        mainScreenStage.show();
     }
 
     @FXML

@@ -7,6 +7,7 @@ package view_controller;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,6 +39,10 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.show();
         
+    }
+    
+    public void exit() {
+        Platform.exit();
     }
     
 

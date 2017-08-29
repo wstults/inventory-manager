@@ -28,7 +28,7 @@
       <TextField fx:id="productMinField" layoutX="215.0" layoutY="296.0" prefHeight="25.0" prefWidth="55.0" />
       <Label layoutX="168.0" layoutY="300.0" text="Min" />
       <Button fx:id="searchButton" layoutX="413.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
-      <TextField layoutX="490.0" layoutY="61.0" />
+      <TextField fx:id="searchPartField" layoutX="490.0" layoutY="61.0" />
       <TableView fx:id="allPartsTable" layoutX="299.0" layoutY="101.0" prefHeight="109.0" prefWidth="373.0">
         <columns>
           <TableColumn fx:id="partIDColumn" prefWidth="75.0" text="Part ID" />

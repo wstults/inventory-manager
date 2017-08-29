@@ -57,7 +57,7 @@ public class Inventory {
         allParts.add(part);
     }
     
-    public boolean deletePart(Part part) {
+    public static boolean deletePart(Part part) {
         return allParts.remove(part);
         
     }

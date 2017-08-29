@@ -5,13 +5,29 @@
  */
 package view_controller;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.InhousePart;
+import model.Inventory;
+import static model.Inventory.allParts;
+import model.OutsourcedPart;
+import model.Part;
+import static view_controller.MainScreenController.selectedInhousePart;
+import static view_controller.MainScreenController.selectedOutsourcedPart;
 
-public class ModifyOutsourcedPartScreenController {
+public class ModifyOutsourcedPartScreenController implements Initializable {
 
     @FXML
     private RadioButton inHouseRadioButton;
@@ -45,20 +61,62 @@ public class ModifyOutsourcedPartScreenController {
 
     @FXML
     private Button cancelButton;
+    
+    public static Part currentOutsourcedPart;
 
     @FXML
-    void handleCancel(ActionEvent event) {
+    void handleCancel(ActionEvent event) throws IOException {
+        Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        Scene mainScreenScene = new Scene(mainScreenParent);
+        Stage mainScreenStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainScreenStage.hide();
+        mainScreenStage.setScene(mainScreenScene);
+        mainScreenStage.show();
+    }
+
+    @FXML
+    void handleInHouse(ActionEvent event) throws IOException {
+        currentOutsourcedPart = (Part) selectedOutsourcedPart;
+        selectedInhousePart = (InhousePart) currentOutsourcedPart;
+        Parent modifyInhousePartParent = FXMLLoader.load(getClass().getResource("ModifyInhousePartScreen.fxml"));
+        Scene modifyInhousePartScene = new Scene(modifyInhousePartParent);
+        Stage modifyInhousePartStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        modifyInhousePartStage.hide();
+        modifyInhousePartStage.setScene(modifyInhousePartScene);
+        modifyInhousePartStage.show();
 
     }
 
     @FXML
-    void handleInHouse(ActionEvent event) {
-
+    void handleSave(ActionEvent event) throws IOException {
+        allParts.remove(selectedOutsourcedPart);
+        String partID = partIDField.getText();
+        String name = partNameField.getText();
+        String inv = partInvField.getText();
+        String price = partPriceField.getText();
+        String max = partMaxField.getText();
+        String min = partMinField.getText();
+        String companyName = partCompanyNameField.getText();
+        OutsourcedPart newOutsourcedPart;
+        newOutsourcedPart = new OutsourcedPart(Integer.parseInt(partID), name, Double.parseDouble(price), Integer.parseInt(inv), Integer.parseInt(min), Integer.parseInt(max), companyName);
+        Inventory.addPart(newOutsourcedPart); 
+        Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        Scene mainScreenScene = new Scene(mainScreenParent);
+        Stage mainScreenStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainScreenStage.hide();
+        mainScreenStage.setScene(mainScreenScene);
+        mainScreenStage.show();
     }
 
-    @FXML
-    void handleSave(ActionEvent event) {
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        partIDField.setText(Integer.toString(selectedOutsourcedPart.getPartID()));
+        partNameField.setText(selectedOutsourcedPart.getName());
+        partInvField.setText(Integer.toString(selectedOutsourcedPart.getInStock()));
+        partPriceField.setText(Double.toString(selectedOutsourcedPart.getPrice()));
+        partCompanyNameField.setText(selectedOutsourcedPart.getCompanyName());
+        partMaxField.setText(Integer.toString(selectedOutsourcedPart.getMax()));
+        partMinField.setText(Integer.toString(selectedOutsourcedPart.getMin()));
     }
 
 }

@@ -20,6 +20,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Counter;
+import model.Inventory;
+import model.OutsourcedPart;
 
 public class AddModifyOutsourcedPartScreenController implements Initializable {
 
@@ -69,7 +71,23 @@ public class AddModifyOutsourcedPartScreenController implements Initializable {
     }
 
     @FXML
-    void handleSave(ActionEvent event) {
+    void handleSave(ActionEvent event) throws IOException {
+        String partID = partIDField.getText();
+        String name = partNameField.getText();
+        String inv = partInvField.getText();
+        String price = partPriceField.getText();
+        String max = partMaxField.getText();
+        String min = partMinField.getText();
+        String companyName = partCompanyNameField.getText();
+        OutsourcedPart newOutsourcedPart;
+        newOutsourcedPart = new OutsourcedPart(Integer.parseInt(partID), name, Double.parseDouble(price), Integer.parseInt(inv), Integer.parseInt(min), Integer.parseInt(max), companyName);
+        Inventory.addPart(newOutsourcedPart); 
+        Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        Scene mainScreenScene = new Scene(mainScreenParent);
+        Stage mainScreenStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainScreenStage.hide();
+        mainScreenStage.setScene(mainScreenScene);
+        mainScreenStage.show();
 
     }
 

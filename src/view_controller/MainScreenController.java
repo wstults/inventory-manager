@@ -9,6 +9,7 @@ package view_controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import static javafx.application.Platform.exit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +25,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.InhousePart;
 import model.Inventory;
+import static model.Inventory.allParts;
+import static model.Inventory.products;
+import model.OutsourcedPart;
 import model.Part;
 import model.Product;
 
@@ -98,6 +103,10 @@ public class MainScreenController {
     @FXML
     public ObservableList<Product> productsData=FXCollections.observableArrayList();
     
+    public static InhousePart selectedInhousePart;
+    public static OutsourcedPart selectedOutsourcedPart;
+    public static Product selectedProduct;
+    
     private MainApp mainApp;
     
     
@@ -134,49 +143,67 @@ public class MainScreenController {
 
     @FXML
     void handleAddProduct(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent root;
-        if(event.getSource()==addProductButton) {
-            stage=(Stage) addProductButton.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("AddModifyProductScreen.fxml"));
-        }
+        Parent addProductParent = FXMLLoader.load(getClass().getResource("AddModifyProductScreen.fxml"));
+        Scene addProductScene = new Scene(addProductParent);
+        Stage addProductStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        addProductStage.hide();
+        addProductStage.setScene(addProductScene);
+        addProductStage.show();
 
     }
 
     @FXML
-    void handleDeletePart(ActionEvent event) {
-
+    void handleDeletePart(ActionEvent event) throws IOException {
+        allParts.remove(partsTable.getSelectionModel().getSelectedItem());
+        partsTable.setItems(Inventory.getAllParts());
+        
     }
 
     @FXML
-    void handleDeleteProduct(ActionEvent event) {
-
+    void handleDeleteProduct(ActionEvent event) throws IOException {
+        products.remove(productsTable.getSelectionModel().getSelectedItem());
+        productsTable.setItems(Inventory.getProducts());
     }
 
     @FXML
     void handleExit(ActionEvent event) {
-
+        exit();
     }
 
     @FXML
     void handleModifyPart(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent root;
-        if(event.getSource()==modifyPartButton) {
-            stage=(Stage) modifyPartButton.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("ModifyInhousePartScreen.fxml"));
-        }
-
+        
+        if (partsTable.getSelectionModel().getSelectedItem() instanceof InhousePart) {
+            selectedInhousePart = (InhousePart) partsTable.getSelectionModel().getSelectedItem();
+            Parent modifyInhousePartParent = FXMLLoader.load(getClass().getResource("ModifyInhousePartScreen.fxml"));
+            Scene modifyInhousePartScene = new Scene(modifyInhousePartParent);
+            Stage modifyInhousePartStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            modifyInhousePartStage.hide();
+            modifyInhousePartStage.setScene(modifyInhousePartScene);
+            modifyInhousePartStage.show();
+            
+        } else {
+            selectedOutsourcedPart = (OutsourcedPart) partsTable.getSelectionModel().getSelectedItem();
+            Parent modifyOutsourcedPartParent = FXMLLoader.load(getClass().getResource("ModifyOutsourcedPartScreen.fxml"));
+            Scene modifyOutsourcedPartScene = new Scene(modifyOutsourcedPartParent);
+            Stage modifyOutsourcedPartStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            modifyOutsourcedPartStage.hide();
+            modifyOutsourcedPartStage.setScene(modifyOutsourcedPartScene);
+            modifyOutsourcedPartStage.show();
+            }
+        
     }
 
     @FXML
     void handleModifyProduct(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent root;
-        if(event.getSource()==modifyProductButton) {
-            stage=(Stage) modifyProductButton.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("ModifyProductScreen.fxml"));
-        }
+        selectedProduct = productsTable.getSelectionModel().getSelectedItem();
+        Parent modifyProductParent = FXMLLoader.load(getClass().getResource("ModifyProductScreen.fxml"));
+        Scene modifyProductScene = new Scene(modifyProductParent);
+        Stage modifyProductStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        modifyProductStage.hide();
+        modifyProductStage.setScene(modifyProductScene);
+        modifyProductStage.show();
+        
 
     }
 

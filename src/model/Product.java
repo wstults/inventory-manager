@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
  */
 public class Product {
     
-    private final ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    public ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     
     final SimpleIntegerProperty ProductID=new SimpleIntegerProperty(0);
     private final SimpleStringProperty Name=new SimpleStringProperty("");
