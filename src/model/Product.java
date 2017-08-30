@@ -48,9 +48,7 @@ public class Product {
         return Name.get();
     }
     
-    /*public StringProperty nameProperty() {
-        return name;
-    }*/
+    
     
     public void setPrice(double price) {
         Price.set(price);
@@ -60,9 +58,7 @@ public class Product {
         return Price.get();
     }
     
-    /*public DoubleProperty priceProperty() {
-        return price;
-    }*/
+    
     
     public void setInStock(int inStock) {
         InStock.set(inStock);
@@ -72,9 +68,7 @@ public class Product {
         return InStock.get();
     }
     
-    /*public IntegerProperty inStockProperty() {
-        return inStock;
-    }*/
+    
     
     public void setMin(int min) {
         Min.set(min);
@@ -84,9 +78,7 @@ public class Product {
         return Min.get();
     }
     
-    /*public IntegerProperty minProperty() {
-        return min;
-    }*/
+    
     
     public void setMax(int max) {
         Max.set(max);
@@ -96,9 +88,7 @@ public class Product {
         return Max.get();
     }
     
-    /*public IntegerProperty maxProperty() {
-        return max;
-    }*/
+    
     
     public void addAssociatedPart(Part part) {
         associatedParts.add(part);
@@ -110,11 +100,12 @@ public class Product {
         });
         return true;
     }
-    /*
+    
     public Part lookupAssociatedPart(int productID) {
-        // functionality will be addressed elsewhere - return to update comment
-        
-    } */
+        // functionality is handled via the initialize method in ModifyProductScreenController
+        InhousePart placeHolder = new InhousePart(777, "Placeholder", 5.00, 55, 1, 99, 4343);
+        return placeHolder;
+    } 
     
     public void setProductID(int productID) {
         ProductID.set(productID);
@@ -124,8 +115,6 @@ public class Product {
         return ProductID.get();
     }
     
-    /*public IntegerProperty productIDProperty() {
-        return productID;
-    }*/
+    
     
 }

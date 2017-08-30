@@ -43,14 +43,15 @@ public class Inventory {
         });
         return true;
     }
-    /*
+    
     public Product lookupProduct(IntegerProperty productID) {
-        // funtionality will be addressed elsewhere - be sure to update comment
-        
-    } */
+        // funtionality is handled by handleSearchProduct method in MainScreenController
+        Product placeHolder = new Product(999, "Placeholder", 20.00, 22, 1, 99);
+        return placeHolder;
+    } 
     
     public void updateProduct(int productID) {
-        // funtionality will be addressed elsewhere - be sure to update comment
+        // funtionality is handled via the handleSave method in ModifyProductScreenController
     } 
     
     public static void addPart(Part part) {
@@ -61,13 +62,16 @@ public class Inventory {
         return allParts.remove(part);
         
     }
-    /*
+    
     public Part lookupPart(IntegerProperty partID) {
-        // funtionality will be addressed elsewhere - be sure to update comment
-    } */
+        // funtionality is handled by the handleSearchPart method in MainScreenController
+        // as well as the handleSearch methods in AddModifyProductScreenController and ModifyProductScreenController
+        InhousePart placeHolder = new InhousePart(888, "Placeholder", 5.00, 55, 1, 99, 4343);
+        return placeHolder;
+    } 
     
     public void updatePart(int partID) {
-        // funtionality will be addressed elsewhere - be sure to update comment
+        // funtionality is handled by the handleSave methods in ModifyInhousePartController and ModifyOutsourcedPartController
     }
     
 }
