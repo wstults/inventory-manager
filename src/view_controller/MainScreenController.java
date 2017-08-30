@@ -7,8 +7,6 @@ package view_controller;
 
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import static javafx.application.Platform.exit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -154,6 +152,9 @@ public class MainScreenController {
 
     @FXML
     void handleDeletePart(ActionEvent event) throws IOException {
+        if (ErrorCheck.deleteConfirm() == false) {
+            return;
+        }
         allParts.remove(partsTable.getSelectionModel().getSelectedItem());
         partsTable.setItems(Inventory.getAllParts());
         
@@ -161,6 +162,12 @@ public class MainScreenController {
 
     @FXML
     void handleDeleteProduct(ActionEvent event) throws IOException {
+        if (ErrorCheck.deleteConfirm() == false) {
+            return;
+        }
+        if (ErrorCheck.productDeleteCheck(productsTable.getSelectionModel().getSelectedItem()) == false) {
+            return;
+        }
         products.remove(productsTable.getSelectionModel().getSelectedItem());
         productsTable.setItems(Inventory.getProducts());
     }

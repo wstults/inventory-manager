@@ -60,6 +60,9 @@ public class AddModifyOutsourcedPartScreenController implements Initializable {
 
     @FXML
     void handleCancel(ActionEvent event) throws IOException {
+        if (ErrorCheck.cancelConfirm() == false) {
+            return;
+        }
         Counter.decrement();
         Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene mainScreenScene = new Scene(mainScreenParent);
@@ -79,6 +82,15 @@ public class AddModifyOutsourcedPartScreenController implements Initializable {
         String max = partMaxField.getText();
         String min = partMinField.getText();
         String companyName = partCompanyNameField.getText();
+        if (ErrorCheck.maxCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.minCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.invCheck(Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(inv)) == false) {
+            return;
+        }
         OutsourcedPart newOutsourcedPart;
         newOutsourcedPart = new OutsourcedPart(Integer.parseInt(partID), name, Double.parseDouble(price), Integer.parseInt(inv), Integer.parseInt(min), Integer.parseInt(max), companyName);
         Inventory.addPart(newOutsourcedPart); 

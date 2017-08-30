@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="view_controller.ModifyInhousePartScreenController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.ModifyInhousePartScreenController">
        <children>
       <Label layoutX="29.0" layoutY="25.0" text="Modify Part" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="25.0">
          <font>
@@ -23,7 +23,7 @@
       <Label layoutX="58.0" layoutY="221.0" text="Price/Cost" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="200.0" />
       <Label layoutX="58.0" layoutY="264.0" text="Max" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="239.0" />
       <Label layoutX="58.0" layoutY="308.0" text="Machine ID" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="278.0" />
-      <TextField fx:id="partIDField" layoutX="156.0" layoutY="79.0" AnchorPane.leftAnchor="182.0" />
+      <TextField fx:id="partIDField" editable="false" layoutX="156.0" layoutY="79.0" AnchorPane.leftAnchor="182.0" />
       <TextField fx:id="partNameField" layoutX="182.0" layoutY="118.0" />
       <TextField fx:id="partInvField" layoutX="182.0" layoutY="157.0" />
       <TextField fx:id="partPriceField" layoutX="182.0" layoutY="196.0" />

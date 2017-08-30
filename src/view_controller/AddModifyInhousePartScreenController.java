@@ -23,6 +23,7 @@ import model.Counter;
 import model.InhousePart;
 import model.Inventory;
 
+
 public class AddModifyInhousePartScreenController implements Initializable{
 
     @FXML
@@ -67,6 +68,9 @@ public class AddModifyInhousePartScreenController implements Initializable{
 
     @FXML
     void handleCancel(ActionEvent event) throws IOException {
+        if (ErrorCheck.cancelConfirm() == false) {
+            return;
+        }
         Counter.decrement();
         Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene mainScreenScene = new Scene(mainScreenParent);
@@ -103,6 +107,15 @@ public class AddModifyInhousePartScreenController implements Initializable{
         String max = partMaxField.getText();
         String min = partMinField.getText();
         String machineID = partMachineIDField.getText();
+        if (ErrorCheck.maxCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.minCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.invCheck(Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(inv)) == false) {
+            return;
+        }
         InhousePart newInhousePart;
         newInhousePart = new InhousePart(Integer.parseInt(partID), name, Double.parseDouble(price), Integer.parseInt(inv), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(machineID));
         Inventory.addPart(newInhousePart); 
@@ -112,7 +125,7 @@ public class AddModifyInhousePartScreenController implements Initializable{
         mainScreenStage.hide();
         mainScreenStage.setScene(mainScreenScene);
         mainScreenStage.show();
-
+        
     }
 
     @Override
@@ -120,9 +133,7 @@ public class AddModifyInhousePartScreenController implements Initializable{
         partIDField.setText(Counter.getValue());
     }
     
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
+    
 
     
     

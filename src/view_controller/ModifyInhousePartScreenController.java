@@ -26,7 +26,6 @@ import model.OutsourcedPart;
 import model.Part;
 import static view_controller.MainScreenController.selectedInhousePart;
 import static view_controller.MainScreenController.selectedOutsourcedPart;
-import static view_controller.ModifyOutsourcedPartScreenController.currentOutsourcedPart;
 
 public class ModifyInhousePartScreenController implements Initializable {
 
@@ -67,6 +66,9 @@ public class ModifyInhousePartScreenController implements Initializable {
 
     @FXML
     void handleCancel(ActionEvent event) throws IOException {
+        if (ErrorCheck.cancelConfirm() == false) {
+            return;
+        }
         Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene mainScreenScene = new Scene(mainScreenParent);
         Stage mainScreenStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -77,13 +79,25 @@ public class ModifyInhousePartScreenController implements Initializable {
 
     @FXML
     void handleInHouse(ActionEvent event) {
-
+        // no action required here
     }
 
     @FXML
     void handleOutsourced(ActionEvent event) throws IOException {
-        currentInhousePart = (Part) selectedInhousePart;
-        selectedOutsourcedPart = (OutsourcedPart) currentInhousePart;
+        if (ErrorCheck.modifyPartDeleteCheck() == false) {
+            return;
+        }
+        int partID = selectedInhousePart.getPartID();
+        String name = selectedInhousePart.getName();
+        double price = selectedInhousePart.getPrice();
+        int inStock = selectedInhousePart.getInStock();
+        int min = selectedInhousePart.getMin();
+        int max = selectedInhousePart.getMax();
+        String companyName = "DEFAULT";
+        
+        selectedOutsourcedPart = new OutsourcedPart(partID, name, price, inStock, min, max, companyName);
+        allParts.add(selectedOutsourcedPart);
+        allParts.remove(selectedInhousePart);
         Parent modifyOutsourcedPartParent = FXMLLoader.load(getClass().getResource("ModifyOutsourcedPartScreen.fxml"));
         Scene modifyOutsourcedPartScene = new Scene(modifyOutsourcedPartParent);
         Stage modifyOutsourcedPartStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -102,6 +116,15 @@ public class ModifyInhousePartScreenController implements Initializable {
         String max = partMaxField.getText();
         String min = partMinField.getText();
         String machineID = partMachineIDField.getText();
+        if (ErrorCheck.maxCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.minCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.invCheck(Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(inv)) == false) {
+            return;
+        }
         InhousePart newInhousePart;
         newInhousePart = new InhousePart(Integer.parseInt(partID), name, Double.parseDouble(price), Integer.parseInt(inv), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(machineID));
         Inventory.addPart(newInhousePart); 

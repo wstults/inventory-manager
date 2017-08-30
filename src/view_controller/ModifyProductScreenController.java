@@ -109,6 +109,9 @@ public class ModifyProductScreenController implements Initializable {
 
     @FXML
     void handleCancel(ActionEvent event) throws IOException {
+        if (ErrorCheck.cancelConfirm() == false) {
+            return;
+        }
         Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene mainScreenScene = new Scene(mainScreenParent);
         Stage mainScreenStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -119,6 +122,9 @@ public class ModifyProductScreenController implements Initializable {
 
     @FXML
     void handleDelete(ActionEvent event) throws IOException {
+        if (ErrorCheck.deleteConfirm() == false) {
+            return;
+        }
         selectedProduct.associatedParts.remove(associatedPartsTable.getSelectionModel().getSelectedItem());
         associatedPartsTable.setItems(selectedProduct.getAssociatedParts());
     }
@@ -132,7 +138,30 @@ public class ModifyProductScreenController implements Initializable {
         String price = productPriceField.getText();
         String max = productMaxField.getText();
         String min = productMinField.getText();
-        
+        if (ErrorCheck.invCheckDefault(inv) == false) {
+            inv = "0";
+        }
+        if (ErrorCheck.maxCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.minCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.invCheck(Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(inv)) == false) {
+            return;
+        }
+        if (ErrorCheck.associatedPartCheck(selectedProduct) == false) {
+            return;
+        }
+        if (ErrorCheck.nameCheck(name) == false) {
+            return;
+        }
+        if (ErrorCheck.priceCheck(price) == false) {
+            return;
+        }
+        if (ErrorCheck.productPartsPriceCheck(selectedProduct, Double.parseDouble(price)) == false) {
+            return;
+        }
         Product newProduct;
         newProduct = new Product(Integer.parseInt(productID), name, Double.parseDouble(price), Integer.parseInt(inv), Integer.parseInt(min), Integer.parseInt(max));
         Inventory.addProduct(newProduct);

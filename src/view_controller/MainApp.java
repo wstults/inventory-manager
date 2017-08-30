@@ -5,20 +5,16 @@
  */
 package view_controller;
 
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.InhousePart;
 import model.Inventory;
 import model.OutsourcedPart;
 import model.Product;
-import view_controller.MainScreenController;
 
 /**
  *
@@ -42,6 +38,9 @@ public class MainApp extends Application {
     }
     
     public void exit() {
+        if (ErrorCheck.exitCheck() == false) {
+            return;
+        }
         Platform.exit();
     }
     
@@ -53,10 +52,20 @@ public class MainApp extends Application {
         Inventory.addPart(newInhousePart);
         OutsourcedPart newOutsourcedPart = new OutsourcedPart(0002, "Cog", 10.00, 55, 1, 99, "Cogworld");
         Inventory.addPart(newOutsourcedPart);
+        InhousePart alsoInhousePart = new InhousePart(4, "Screw", .15, 55, 1, 99, 4343);
+        Inventory.addPart(alsoInhousePart);
+        OutsourcedPart alsoOutsourcedPart = new OutsourcedPart(5, "Bolt", .35, 55, 1, 99, "Bolts R Us");
+        Inventory.addPart(alsoOutsourcedPart);
         Product newProduct = new Product(3, "Contraption", 20.00, 22, 1, 99);
         Inventory.addProduct(newProduct);
         newProduct.addAssociatedPart(newInhousePart);
         newProduct.addAssociatedPart(newOutsourcedPart);
+        Product alsoProduct = new Product(6, "Thing", 17.00, 22, 1, 99);
+        Inventory.addProduct(alsoProduct);
+        alsoProduct.addAssociatedPart(newInhousePart);
+        alsoProduct.addAssociatedPart(newOutsourcedPart);
+        alsoProduct.addAssociatedPart(alsoInhousePart);
+        alsoProduct.addAssociatedPart(alsoOutsourcedPart);
         
         launch(args);
         

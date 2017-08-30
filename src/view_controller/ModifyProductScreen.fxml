@@ -20,7 +20,7 @@
       <Label layoutX="37.0" layoutY="233.0" text="Inv" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="220.0" />
       <Label layoutX="37.0" layoutY="281.0" text="Price" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0" />
       <Label layoutX="37.0" layoutY="326.0" text="Max" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="300.0" />
-      <TextField fx:id="productIDField" layoutX="93.0" layoutY="136.0" />
+      <TextField fx:id="productIDField" editable="false" layoutX="93.0" layoutY="136.0" />
       <TextField fx:id="productNameField" layoutX="93.0" layoutY="176.0" />
       <TextField fx:id="productInvField" layoutX="93.0" layoutY="216.0" prefHeight="25.0" prefWidth="55.0" />
       <TextField fx:id="productPriceField" layoutX="93.0" layoutY="256.0" prefHeight="25.0" prefWidth="55.0" />

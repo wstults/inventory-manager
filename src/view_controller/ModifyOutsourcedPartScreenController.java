@@ -66,6 +66,9 @@ public class ModifyOutsourcedPartScreenController implements Initializable {
 
     @FXML
     void handleCancel(ActionEvent event) throws IOException {
+        if (ErrorCheck.cancelConfirm() == false) {
+            return;
+        }
         Parent mainScreenParent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene mainScreenScene = new Scene(mainScreenParent);
         Stage mainScreenStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -76,8 +79,20 @@ public class ModifyOutsourcedPartScreenController implements Initializable {
 
     @FXML
     void handleInHouse(ActionEvent event) throws IOException {
-        currentOutsourcedPart = (Part) selectedOutsourcedPart;
-        selectedInhousePart = (InhousePart) currentOutsourcedPart;
+        if (ErrorCheck.modifyPartDeleteCheck() == false) {
+            return;
+        }
+        int partID = selectedOutsourcedPart.getPartID();
+        String name = selectedOutsourcedPart.getName();
+        double price = selectedOutsourcedPart.getPrice();
+        int inStock = selectedOutsourcedPart.getInStock();
+        int min = selectedOutsourcedPart.getMin();
+        int max = selectedOutsourcedPart.getMax();
+        int machineID = 1234;
+        
+        selectedInhousePart = new InhousePart(partID, name, price, inStock, min, max, machineID);
+        allParts.add(selectedInhousePart);
+        allParts.remove(selectedOutsourcedPart);
         Parent modifyInhousePartParent = FXMLLoader.load(getClass().getResource("ModifyInhousePartScreen.fxml"));
         Scene modifyInhousePartScene = new Scene(modifyInhousePartParent);
         Stage modifyInhousePartStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -97,6 +112,15 @@ public class ModifyOutsourcedPartScreenController implements Initializable {
         String max = partMaxField.getText();
         String min = partMinField.getText();
         String companyName = partCompanyNameField.getText();
+        if (ErrorCheck.maxCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.minCheck(Integer.parseInt(min), Integer.parseInt(max)) == false) {
+            return;
+        }
+        if (ErrorCheck.invCheck(Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(inv)) == false) {
+            return;
+        }
         OutsourcedPart newOutsourcedPart;
         newOutsourcedPart = new OutsourcedPart(Integer.parseInt(partID), name, Double.parseDouble(price), Integer.parseInt(inv), Integer.parseInt(min), Integer.parseInt(max), companyName);
         Inventory.addPart(newOutsourcedPart); 
